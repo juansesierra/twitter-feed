@@ -1,18 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {Form, Button, FormControl} from 'react-bootstrap';
 import "./searchForm.css"
-
-const SearchForm = () => {
-  const [userName, setUserName] = useState('');
-  const handleInputChange = (event) => {
-    event.preventDefault()
-    setUserName(event.target.value)
-  }
-  const onSubmit = (event) => {
-    event.preventDefault()
-    console.log("Username: ", userName)
-    window.api.fetchUserProfile(userName);
-  }
+const SearchForm = ({onSubmit, onInputChange}) => {
   return (
     <Form 
       className="form-container"
@@ -21,7 +10,7 @@ const SearchForm = () => {
           <Form.Label>Nombre de usuario</Form.Label>
           <FormControl 
             type="text"
-            onChange = {handleInputChange}
+            onChange = {onInputChange}
             placeholder="Introduce un nombre de usuario" />
       </Form.Group>
       <Button variant="primary" type="submit">

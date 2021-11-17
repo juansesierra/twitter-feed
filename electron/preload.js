@@ -3,8 +3,8 @@ const { contextBridge, ipcRenderer } = require("electron");
 contextBridge.exposeInMainWorld(
   'api',
   {
-    fetchTweets: (userId) => { ipcRenderer.send('fetch-user-tweets', userId); },
-    fetchUser: (userName) => { ipcRenderer.send('fetch-user', userName); },
-    fetchUserProfile: (userName) => { ipcRenderer.send('fetch-user-profile', userName); }    
+    fetchTweets: async (userId) => { return ipcRenderer.invoke('fetch-user-tweets', userId); },
+    fetchUser: (userName) => { return ipcRenderer.invoke('fetch-user', userName); },
+    fetchUserProfile: async  (userName) => { return ipcRenderer.invoke('fetch-user-profile', userName);}    
   }
 )

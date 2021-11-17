@@ -11,8 +11,8 @@ let mainWindow;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 900, 
-    height: 680,
+    width: 1100, 
+    height: 750,
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true,
@@ -42,17 +42,17 @@ app.on('activate', () => {
   }
 });
 
-ipcMain.on('fetch-user-tweets', async (event, userId) => {
-    //execute tasks on behalf of renderer process 
-    await client.getTweetsByUserId("590311714");
+ipcMain.handle('fetch-user-tweets', async (event, userId) => {
+  var result = await client.getTweetsByUserId("590311714");
+  return result;
 })
 
-ipcMain.on('fetch-user', async (event, userName) => {
-  //execute tasks on behalf of renderer process 
-  await client.getUserByUserName(userName);
+ipcMain.handle('fetch-user', async (event, userName) => {
+  var result = await client.getUserByUserName(userName);
+  return result;
 })
 
-ipcMain.on('fetch-user-profile', async (event, userName) => {
-  //execute tasks on behalf of renderer process 
-  await client.getUserProfileByUserName(userName);
+ipcMain.handle('fetch-user-profile', async (event, userName) => {
+  var result = await client.getUserProfileByUserName(userName);
+  return result;
 })

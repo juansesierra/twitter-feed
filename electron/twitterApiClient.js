@@ -45,8 +45,6 @@ class TwitterAPIClient {
       userInfo,
       tweets : userTweets
     }
-    console.log("Perfil Resultado");
-    console.log(profile);
     return profile;
   }
 }
