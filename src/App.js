@@ -1,54 +1,75 @@
 import React, { useState } from 'react';
 import SearchForm from './components/searchForm'
-import TweedCard from './components/tweetCard'
+import TweetList from './components/tweetList'
 
 const App = () => {
-  const tweetData = {
-    userName : "IbaiLlanos",
-    name: "Ibai",
-    text: "Probando mi primer tweet"
-  };
   const [userName, setUserName] = useState('');
+  const [error, setError] = useState('');
+  const [tweets, setTweets] = useState([]);
+  const [searchs, setSearchs] = useState([]);
   const [userInfo, setUserInfo] = useState({
-    userName:'',
+    userName: '',
     imageUrl: '',
     name: ''
   });
 
+  const saveSearchs = (newSearch) => {
+    setSearchs((searchList) => {
+      if (searchList.includes(newSearch)) {
+        return searchList;
+      }
+
+      if (searchList.length === 5) {
+        return [...searchList.slice(1, 5), newSearch];
+      }
+
+      return [...searchList, newSearch];
+    })
+  }
+
   const handleInputChange = (event) => {
-    event.preventDefault()
-    setUserName(event.target.value)
+    event.preventDefault();
+    setUserName(event.target.value);
   }
 
   const handleSubmit = async (event) => {
-    event.preventDefault()
-    console.log("Username: ", userName)
-    window.api.fetchUserProfile(userName).
-    then((result) => {
-      setUserInfo(userInfo => ({
-        ...userInfo, 
+    event.preventDefault();
+    setError("");
+
+    if (!userName.length) {
+      setError("Debe escribir un nombre de usuario");
+      return;
+    }
+
+    saveSearchs(userName);
+
+    const result = await window.api.fetchUserProfile(userName);
+    if (result instanceof Error) {
+      setError(result.message);
+      setTweets([]);
+    }
+
+    else {
+      setUserInfo({
         userName: result.userInfo.username,
         name: result.userInfo.name,
         imageUrl: result.userInfo.profile_image_url
-      }));
-      console.log("tweets", result.tweets);
-    });
-    console.log("userInfo", userInfo)
-  }
-
-  function getTweetInfo () {
-    return {
-      userName : "IbaiLlanos",
-      name: "Ibai",
-      text: "Probando mi primer tweet con funcion"
+      });
+      setTweets(result.tweets);
     }
   }
+
+  const tweetList = () => {
+    if (tweets.length) {
+      return <TweetList tweets={tweets} user={userInfo} />
+    }
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <SearchForm onSubmit={handleSubmit} onInputChange={handleInputChange}/>
-        <TweedCard tweet={getTweetInfo()}/>
-      </header>
+      <SearchForm searchs={searchs} onSubmit={handleSubmit} onInputChange={handleInputChange} />
+      {error && <label className="text-danger my-2">{error}</label>}
+      {tweetList()}
     </div>
   );
 }

@@ -6,17 +6,17 @@ const List = ({ user, tweets }) => {
     return {
       userName: user.userName,
       name: user.name,
-      userImageUrl: user.profile_image_url,
+      userImageUrl: user.imageUrl,
       text: tweet.text
     }
   }
-    return (
-        <div className='list'>
-          {
-            tweets.map((tweetRaw) => <TweetCard tweet={getTweetInfo(tweetRaw)}/>)
-          }
-        </div>
-    );
+  return (
+      <div className='list'>
+        {
+          tweets.map((tweetRaw) => <TweetCard key={tweetRaw.id} tweet={getTweetInfo(tweetRaw)}/>)
+        }
+      </div>
+  );
 };
 
 export default List;

@@ -21,8 +21,6 @@ function createWindow() {
   });
   mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
   if (isDev) {
-    // Open the DevTools.
-    //BrowserWindow.addDevToolsExtension('<location to your react chrome extension>');
     mainWindow.webContents.openDevTools();
   }
   mainWindow.on('closed', () => mainWindow = null);
@@ -43,16 +41,21 @@ app.on('activate', () => {
 });
 
 ipcMain.handle('fetch-user-tweets', async (event, userId) => {
-  var result = await client.getTweetsByUserId("590311714");
+  const result = await client.getTweetsByUserId(userId);
   return result;
 })
 
 ipcMain.handle('fetch-user', async (event, userName) => {
-  var result = await client.getUserByUserName(userName);
+  const result = await client.getUserByUserName(userName);
   return result;
 })
 
 ipcMain.handle('fetch-user-profile', async (event, userName) => {
-  var result = await client.getUserProfileByUserName(userName);
-  return result;
+  try {
+    const result = await client.getUserProfileByUserName(userName);
+    return result;
+  }
+  catch (error) {
+    return error;
+  }
 })
