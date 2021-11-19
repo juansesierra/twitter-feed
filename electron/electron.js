@@ -11,7 +11,7 @@ let mainWindow;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 1100, 
+    width: 1100,
     height: 750,
     webPreferences: {
       nodeIntegration: true,
@@ -40,14 +40,25 @@ app.on('activate', () => {
   }
 });
 
-ipcMain.handle('fetch-user-tweets', async (event, userId) => {
-  const result = await client.getTweetsByUserId(userId);
-  return result;
+ipcMain.handle('fetch-user-tweets', async (event, userId, paginationToken = "") => {
+  try {
+    const result = await client.getTweetsByUserId(userId, paginationToken);
+    return result;
+  }
+  catch (error) {
+    console.log(error)
+    return error;
+  }
 })
 
 ipcMain.handle('fetch-user', async (event, userName) => {
-  const result = await client.getUserByUserName(userName);
-  return result;
+  try {
+    const result = await client.getUserByUserName(userName);
+    return result;
+  }
+  catch (error) {
+    return error;
+  }
 })
 
 ipcMain.handle('fetch-user-profile', async (event, userName) => {

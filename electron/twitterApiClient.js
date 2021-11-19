@@ -11,16 +11,28 @@ class TwitterAPIClient {
 
     this.axios = axios.create(defaultOptions);
   }
-  async getTweetsByUserId(userId) {
-    const response = await this.axios.get(
-      `/users/${userId}/tweets`
-    );
+
+  async getTweetsByUserId(userId, paginationToken = "") {
+    const params = {
+      params: {
+        "tweet.fields": "public_metrics"
+      }
+    }
+    if (paginationToken)
+      params.params.pagination_token = paginationToken;
+
+    const response = await this.axios.get(`/users/${userId}/tweets`, params);
+
     if (response.status == 200 && response.data.data)
-      return response.data.data;
+      return {
+        tweets: response.data.data,
+        nextPaginationToken: response.data.meta.next_token ? response.data.meta.next_token : ""
+      };
 
     else
       throw Error("Tweets not found");
   }
+
   async getUserByUserName(userName) {
     const params = {
       params: {
@@ -36,6 +48,7 @@ class TwitterAPIClient {
     else
       throw Error("No se ha encontrado el nombre de usuario");
   }
+
   async getUserProfileByUserName(userName) {
     const userInfo = await this.getUserByUserName(userName);
 
@@ -43,10 +56,11 @@ class TwitterAPIClient {
       throw Error("La cuenta del usuario es privada");
     }
 
-    const userTweets = await this.getTweetsByUserId(userInfo.id);
+    const tweetsResponse = await this.getTweetsByUserId(userInfo.id);
     const profile = {
       userInfo,
-      tweets: userTweets
+      tweets: tweetsResponse.tweets,
+      nextPaginationToken: tweetsResponse.nextPaginationToken
     }
     return profile;
   }
