@@ -1,4 +1,7 @@
 const electron = require('electron');
+const dotenv = require('dotenv')
+dotenv.config()
+
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 
@@ -6,7 +9,8 @@ const path = require('path');
 const isDev = require('electron-is-dev');
 const { ipcMain } = require('electron')
 const TwitterApiClient = require("./twitterApiClient");
-const client = new TwitterApiClient("AAAAAAAAAAAAAAAAAAAAAKqcVgEAAAAADInlpSqA%2FTm3L8CXkz%2BeTqLz7yo%3D0r1kECHkNb48mnAAWwP0VSDtmrHqlNgK0S6WCXDp2Mmdev6yRn");
+
+const client = new TwitterApiClient(process.env.API_TOKEN);
 let mainWindow;
 
 function createWindow() {
