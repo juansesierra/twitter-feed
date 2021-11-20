@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Container } from 'react-bootstrap';
 
 import "./tweetCard.css"
 
@@ -52,22 +52,21 @@ const TweetCard = ({ tweet }) => {
   return (
     <div className="tweet">
       <Avatar imageUrl={tweet.userImageUrl} />
-      <div className="content">
+      <Container>
         <Author userInfo={{ name: tweet.name, userName: tweet.userName }} />
         <div className="message">{tweet.text}</div>
-        <Row className="mt-1" sm={6}>
-          <Col>
+        <Row className="mt-1">
+          <Col sm={3}>
             <Replies replyCount={tweet.replyCount} />
           </Col>
-          <Col>
+          <Col sm={3}>
             <Retweets retweetCount={tweet.retweetCount} />
           </Col>
-          <Col>
+          <Col sm={3}>
             <Likes likeCount={tweet.likeCount} />
           </Col>
-
         </Row>
-      </div>
+      </Container>
     </div>
   )
 };
