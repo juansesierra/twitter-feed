@@ -30,6 +30,10 @@ We can also go to the bottom and load more tweets.
 
 https://user-images.githubusercontent.com/26814252/142734672-1b041f82-b131-4bd8-bc4e-5048bfa39f32.mov
 
+As we can see, we have another input where as we write tweets are filtered.
+
+https://user-images.githubusercontent.com/26814252/142736008-3a8c8d24-09d9-49bd-920c-213809a55bd1.mov
+
 In case that you are trying to search an user that doesn't exist or is a private profile you will get an alert.
 
 ![Captura de pantalla 2021-11-20 a las 17 58 49](https://user-images.githubusercontent.com/26814252/142735066-5cde8fdb-1353-43ae-b041-d9715f5c344f.png)
