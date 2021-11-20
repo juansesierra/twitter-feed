@@ -46,7 +46,6 @@ ipcMain.handle('fetch-user-tweets', async (event, userId, paginationToken = "") 
     return result;
   }
   catch (error) {
-    console.log(error)
     return error;
   }
 })

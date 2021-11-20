@@ -1,10 +1,10 @@
 import React from 'react';
 import { Form, Button, FormControl } from 'react-bootstrap';
-import "./searchForm.css"
+
 const SearchForm = ({ onSubmit, onInputChange, searchs }) => {
   return (
     <Form
-      className="form-container"
+      className="my-3"
       onSubmit={onSubmit}>
       <Form.Group className="mb-3" controlId="formUser">
         <Form.Label>Nombre de usuario</Form.Label>

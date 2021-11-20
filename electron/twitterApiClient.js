@@ -22,15 +22,19 @@ class TwitterAPIClient {
       params.params.pagination_token = paginationToken;
 
     const response = await this.axios.get(`/users/${userId}/tweets`, params);
+    try {
+      if (response.status == 200 && response.data.data)
+        return {
+          tweets: response.data.data,
+          nextPaginationToken: response.data.meta.next_token ? response.data.meta.next_token : ""
+        };
 
-    if (response.status == 200 && response.data.data)
-      return {
-        tweets: response.data.data,
-        nextPaginationToken: response.data.meta.next_token ? response.data.meta.next_token : ""
-      };
-
-    else
-      throw Error("Tweets not found");
+      else
+        throw Error("No se han enccontrado tweets");
+    }
+    catch (error) {
+      throw Error("No se han enccontrado tweets");
+    }
   }
 
   async getUserByUserName(userName) {
@@ -40,13 +44,18 @@ class TwitterAPIClient {
         "user.fields": "profile_image_url,protected"
       }
     }
-    const response = await this.axios.get('/users/by', params);
+    try {
+      const response = await this.axios.get('/users/by', params);
 
-    if (response.status == 200 && response.data.data)
-      return response.data.data[0];
+      if (response.status == 200 && response.data.data)
+        return response.data.data[0];
 
-    else
+      else
+        throw Error("No se ha encontrado el nombre de usuario");
+    }
+    catch (error) {
       throw Error("No se ha encontrado el nombre de usuario");
+    }
   }
 
   async getUserProfileByUserName(userName) {

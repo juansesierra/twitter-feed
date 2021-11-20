@@ -7,15 +7,18 @@ const List = ({ user, tweets }) => {
       userName: user.userName,
       name: user.name,
       userImageUrl: user.imageUrl,
-      text: tweet.text
+      text: tweet.text,
+      replyCount: tweet.public_metrics.reply_count,
+      likeCount: tweet.public_metrics.like_count,
+      retweetCount: tweet.public_metrics.retweet_count
     }
   }
   return (
-      <div className='list'>
-        {
-          tweets.map((tweetRaw) => <TweetCard key={tweetRaw.id} tweet={getTweetInfo(tweetRaw)}/>)
-        }
-      </div>
+    <div>
+      {
+        tweets.map((tweetRaw) => <TweetCard key={tweetRaw.id} tweet={getTweetInfo(tweetRaw)} />)
+      }
+    </div>
   );
 };
 
