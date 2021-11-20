@@ -30,7 +30,7 @@ We can also go to the bottom and load more tweets.
 
 https://user-images.githubusercontent.com/26814252/142734672-1b041f82-b131-4bd8-bc4e-5048bfa39f32.mov
 
-In case that you are trying to search an user that doesn't exist or is a private profile you will get an altert.
+In case that you are trying to search an user that doesn't exist or is a private profile you will get an alert.
 
 ![Captura de pantalla 2021-11-20 a las 17 58 49](https://user-images.githubusercontent.com/26814252/142735066-5cde8fdb-1353-43ae-b041-d9715f5c344f.png)
 
