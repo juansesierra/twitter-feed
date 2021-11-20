@@ -20,7 +20,7 @@ For this project to run properly we need to follow these steps:
 Once you start the app, this is the state that you will see.
 If we want to search a user, you only have to write his name without "@" and click the button.
 
-![](https://i.imgur.com/c2wa38b.png)
+![Captura de pantalla 2021-11-20 a las 17 13 43](https://user-images.githubusercontent.com/26814252/142735132-ca33f433-e198-41df-b9cd-a34af1ff9dbc.png)
 
 For example we are going to search Ibai Llanos' profile.
 
@@ -32,11 +32,12 @@ https://user-images.githubusercontent.com/26814252/142734672-1b041f82-b131-4bd8-
 
 In case that you are trying to search an user that doesn't exist or is a private profile you will get an altert.
 
-![Captura de pantalla 2021-11-20 a las 17 59 20](https://user-images.githubusercontent.com/26814252/142734803-69e46fe8-5230-4e90-bc7b-7e767b47ea92.png)
+![Captura de pantalla 2021-11-20 a las 17 58 49](https://user-images.githubusercontent.com/26814252/142735066-5cde8fdb-1353-43ae-b041-d9715f5c344f.png)
 
-![Captura de pantalla 2021-11-20 a las 17 58 49](https://user-images.githubusercontent.com/26814252/142734793-9a04a653-e335-47a4-9270-031352dbcd2f.png)
+![Captura de pantalla 2021-11-20 a las 17 59 20](https://user-images.githubusercontent.com/26814252/142735061-a60094b0-7bea-4e3d-acae-1ec96092e618.png)
 
 Finally, when you are trying to search and you have previously searched, the application will show you the previous searches.
 
-![Captura de pantalla 2021-11-20 a las 18 02 57](https://user-images.githubusercontent.com/26814252/142734905-a6f62ee2-5c74-4dcc-ad92-a596b908b55b.png)
+![Captura de pantalla 2021-11-20 a las 18 02 57](https://user-images.githubusercontent.com/26814252/142735040-358f1a19-b560-4b60-8488-985f7a5dd4a6.png)
+
 
