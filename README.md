@@ -13,6 +13,7 @@ For this project to run properly we need to follow these steps:
 * Clone this repository
 
     `git clone https://github.com/juansesierra/twitter-feed.git`
+* Create a `.env` file and set the `API_TOKEN` variable, with your Twitter api token
 * Install dependencies `npm i`
 * Start the application `npm run electron-start`
 
